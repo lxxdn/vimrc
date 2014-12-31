@@ -112,6 +112,7 @@ Plugin 'fatih/vim-go'
 Plugin 'Yggdroot/indentLine'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
+Plugin 'vim-scripts/BufOnly.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
