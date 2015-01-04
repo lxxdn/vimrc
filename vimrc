@@ -31,15 +31,18 @@ set tags=.tags,.gemtags
 "颜色主题
 """"""""""""""""""""
 set t_Co=256
-syntax enable
-set background=light
-colorscheme solarized
 set guifont=Menlo\ Regular:h15
 
 if has("gui_running")
   " GUI is running or is about to start.
   " Maximize gvim window (for an alternative on Windows, see simalt below).
   set lines=999 columns=999
+  syntax enable
+  set background=light
+  colorscheme solarized
+else
+  colorscheme molokai
+  let g:molokai_original = 1
 endif
 
 """""""""""""""""""
