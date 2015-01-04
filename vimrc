@@ -32,8 +32,8 @@ set tags=.tags,.gemtags
 """"""""""""""""""""
 set t_Co=256
 syntax enable
-colorscheme molokai
-let g:molokai_original = 1
+set background=light
+colorscheme solarized
 set guifont=Menlo\ Regular:h15
 
 if has("gui_running")
