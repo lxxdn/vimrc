@@ -116,6 +116,7 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-scripts/BufOnly.vim'
+Plugin 'honza/vim-snippets'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -219,3 +220,18 @@ augroup END
 " Airline
 """""""""""""""""""
 let g:airline#extensions#tabline#enabled = 1
+
+
+"""""""""""""""""""
+" YouCompleteMe
+"""""""""""""""""""
+let g:ycm_key_list_select_completion = ['<Down>']
+
+"""""""""""""""""""
+" ultisnips
+"""""""""""""""""""
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
