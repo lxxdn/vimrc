@@ -89,8 +89,8 @@ Plugin 'gmarik/Vundle.vim'
 "
 " original repos on github
 Plugin 'kien/ctrlp.vim'
-Plugin 'sukima/xmledit'
-Plugin 'sjl/gundo.vim'
+"Plugin 'sukima/xmledit'
+"Plugin 'sjl/gundo.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'Valloric/ListToggle'
 Plugin 'SirVer/ultisnips'
@@ -107,7 +107,7 @@ Plugin 'rking/ag.vim'
 Plugin 'skammer/vim-css-color'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-bufferline'
+"Plugin 'bling/vim-bufferline'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-fugitive'
 Plugin 'cakebaker/scss-syntax.vim'
@@ -235,3 +235,9 @@ let g:ycm_key_list_select_completion = ['<Down>']
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+"""""""""""""""""""
+" ListToggle
+"""""""""""""""""""
+let g:lt_location_list_toggle_map = '<leader>l'
+let g:lt_quickfix_list_toggle_map = '<leader>q'
