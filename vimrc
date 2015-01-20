@@ -37,14 +37,13 @@ if has("gui_running")
   " GUI is running or is about to start.
   " Maximize gvim window (for an alternative on Windows, see simalt below).
   set lines=999 columns=999
-  syntax enable
-  set background=light
-  colorscheme solarized
-else
-  colorscheme molokai
-  let g:molokai_original = 1
+"  set background=light
+"  colorscheme solarized
 endif
 
+syntax enable
+colorscheme molokai
+let g:molokai_original = 1
 """""""""""""""""""
 " 自定义键盘绑定
 """"""""""""""""""""
@@ -59,7 +58,11 @@ runtime! macros/matchit.vim
 """"""""""""""""""""
 set et                      " tab 变 空格
 set smarttab                "backspace delete a tab instead of a space
-
+"""""""""""""""""""
+"复制模式
+""""""""""""""""""""
+set pastetoggle=<F3>
+nnoremap <F3> :set invpaste paste?<CR>kk
 
 "如果是ruby则tab是两个空格，否则是4个空格
 set shiftwidth=2
@@ -117,6 +120,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-scripts/BufOnly.vim'
 Plugin 'honza/vim-snippets'
+Plugin 'Lokaltog/vim-easymotion'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
