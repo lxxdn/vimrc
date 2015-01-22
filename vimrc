@@ -95,7 +95,6 @@ Plugin 'kien/ctrlp.vim'
 "Plugin 'sukima/xmledit'
 "Plugin 'sjl/gundo.vim'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'Valloric/ListToggle'
 Plugin 'SirVer/ultisnips'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
@@ -241,7 +240,10 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 """""""""""""""""""
-" ListToggle
+" Easy motion
 """""""""""""""""""
-let g:lt_location_list_toggle_map = '<leader>l'
-let g:lt_quickfix_list_toggle_map = '<leader>q'
+map <Leader>l <Plug>(easymotion-lineforward)
+nmap lj <Plug>(easymotion-j)
+nmap lk <Plug>(easymotion-k)
+nmap <Leader>w <Plug>(easymotion-w)
+
