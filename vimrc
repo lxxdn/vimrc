@@ -14,7 +14,7 @@ set cul     "显示当前行
 
 "set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%]  " 我的状态行显示的内容（包括文件类型和解码） set laststatus=2  " 总是显示状态行
 set cmdheight=2   " 命令行（在状态行下）的高度，默认为1，这里是2
-
+set ignorecase          "搜索忽略大小写
 set lbr                 "单词不断行
 set fo+=mB              "中文可以断
 set hls                 "高亮搜索
@@ -42,7 +42,7 @@ if has("gui_running")
 endif
 
 syntax enable
-colorscheme molokai
+colorscheme Tomorrow-Night-Eighties
 let g:molokai_original = 1
 """""""""""""""""""
 " 自定义键盘绑定
@@ -52,6 +52,10 @@ map <C-Tab> :bnext<cr>
 map <C-S-Tab> :bprevious<cr>
 " % to bounce from do to end etc.
 runtime! macros/matchit.vim
+
+nnoremap <F4> :nohl<CR>
+nnoremap <F5> :BufOnly<CR>
+
 
 """""""""""""""""""
 "缩进
@@ -104,6 +108,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-haml'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'rking/ag.vim'
 Plugin 'skammer/vim-css-color'
@@ -114,7 +119,7 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-fugitive'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'fatih/vim-go'
-Plugin 'Yggdroot/indentLine'
+"Plugin 'Yggdroot/indentLine'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-scripts/BufOnly.vim'
@@ -196,6 +201,8 @@ let g:ctrlp_mruf_max=500
 let g:ctrlp_follow_symlinks=1
 let g:ctrlp_clear_cache_on_exit = 1
 
+nnoremap <F2> :CtrlPClearAllCaches<CR>
+
 """"""""""""""""""
 " Multiple cursor
 """""""""""""""""""
@@ -243,7 +250,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " Easy motion
 """""""""""""""""""
 map <Leader>l <Plug>(easymotion-lineforward)
-nmap lj <Plug>(easymotion-j)
-nmap lk <Plug>(easymotion-k)
+nmap <Leader>j <Plug>(easymotion-j)
+nmap <Leader>k <Plug>(easymotion-k)
 nmap <Leader>w <Plug>(easymotion-w)
 
