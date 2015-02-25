@@ -96,8 +96,6 @@ Plugin 'gmarik/Vundle.vim'
 "
 " original repos on github
 Plugin 'kien/ctrlp.vim'
-"Plugin 'sukima/xmledit'
-"Plugin 'sjl/gundo.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'SirVer/ultisnips'
 Plugin 'scrooloose/nerdtree'
@@ -105,7 +103,6 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-haml'
@@ -114,17 +111,18 @@ Plugin 'rking/ag.vim'
 Plugin 'skammer/vim-css-color'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
-"Plugin 'bling/vim-bufferline'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-fugitive'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'fatih/vim-go'
-"Plugin 'Yggdroot/indentLine'
+Plugin 'Yggdroot/indentLine'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-scripts/BufOnly.vim'
 Plugin 'honza/vim-snippets'
-Plugin 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotouron'
+Plugin 'rbgrouleff/bclose.vim'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -254,3 +252,8 @@ nmap <Leader>j <Plug>(easymotion-j)
 nmap <Leader>k <Plug>(easymotion-k)
 nmap <Leader>w <Plug>(easymotion-w)
 
+
+"""""""""""""""""""
+" indent line
+"""""""""""""""""""
+let g:indentLine_faster = 1
