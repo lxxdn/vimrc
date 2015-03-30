@@ -8,7 +8,7 @@ filetype off           " Enable filetype detection
 
 syntax on " 自动语法高亮
 set showcmd "状态栏显示目前执行的命令
-set enc=utf-8 "utf8 编码
+set encoding=utf-8
 set nocompatible               " be iMproved
 set cul     "显示当前行
 
@@ -31,7 +31,7 @@ set tags=.tags,.gemtags
 "颜色主题
 """"""""""""""""""""
 set t_Co=256
-set guifont=Menlo\ Regular:h15
+set guifont=Meslo\ LG\ S\ for\ Powerline:h15
 
 if has("gui_running")
   " GUI is running or is about to start.
@@ -50,6 +50,7 @@ let g:molokai_original = 1
 " 定义下一个buffer和前一个buffer
 map <C-Tab> :bnext<cr>
 map <C-S-Tab> :bprevious<cr>
+nmap <Leader>q :Bclose<cr>
 " % to bounce from do to end etc.
 runtime! macros/matchit.vim
 
@@ -109,21 +110,19 @@ Plugin 'tpope/vim-haml'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'rking/ag.vim'
 Plugin 'skammer/vim-css-color'
-Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-fugitive'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'fatih/vim-go'
-Plugin 'Yggdroot/indentLine'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-scripts/BufOnly.vim'
 Plugin 'honza/vim-snippets'
-Plugin 'Lokaltog/vim-easymotouron'
+Plugin 'Lokaltog/vim-easymotion'
 Plugin 'rbgrouleff/bclose.vim'
-
-
+Plugin 'bling/vim-airline'
+Plugin 'bling/vim-bufferline'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -228,7 +227,7 @@ augroup END
 " Airline
 """""""""""""""""""
 let g:airline#extensions#tabline#enabled = 1
-
+let g:airline_powerline_fonts = 1
 
 """""""""""""""""""
 " YouCompleteMe
@@ -251,9 +250,3 @@ map <Leader>l <Plug>(easymotion-lineforward)
 nmap <Leader>j <Plug>(easymotion-j)
 nmap <Leader>k <Plug>(easymotion-k)
 nmap <Leader>w <Plug>(easymotion-w)
-
-
-"""""""""""""""""""
-" indent line
-"""""""""""""""""""
-let g:indentLine_faster = 1
