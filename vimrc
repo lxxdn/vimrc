@@ -37,11 +37,11 @@ if has("gui_running")
   " GUI is running or is about to start.
   " Maximize gvim window (for an alternative on Windows, see simalt below).
   set lines=999 columns=999
-  colorscheme Tomorrow-Night-Eighties
+  colorscheme molokai
 endif
 
 syntax enable
-colorscheme Tomorrow-Night-Eighties
+colorscheme molokai
 let g:molokai_original = 1
 """""""""""""""""""
 " 自定义键盘绑定
@@ -56,6 +56,11 @@ runtime! macros/matchit.vim
 nnoremap <F4> :nohl<CR>
 nnoremap <F5> :BufOnly<CR>
 
+"use Ctrl + hjkl to move between windows
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-H> <C-W>h
+map <C-L> <C-W>l
 
 """""""""""""""""""
 "缩进
@@ -73,10 +78,6 @@ set shiftwidth=2
 set tabstop=2
 set sw=2
 
-"一次向下移动15行
-map <C-j> 15j
-"一次向上移动15行
-map <C-k> 15k
 "删除没用的空格
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -215,7 +216,6 @@ let g:multi_cursor_quit_key='<Esc>'
 """""""""""""""""""
 let g:cssColorVimDoNotMessMyUpdatetime = 1
 
-
 """""""""""""""""""
 " Vim flavored mardkown
 """""""""""""""""""
@@ -252,13 +252,37 @@ nmap <Leader>j <Plug>(easymotion-j)
 nmap <Leader>k <Plug>(easymotion-k)
 nmap <Leader>w <Plug>(easymotion-w)
 
-
-
 """""""""""""""""""
 " Tagbar
 """""""""""""""""""
 nmap <F8> :TagbarToggle<CR>
-
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 """""""""""""""""""
 " Syntastic
