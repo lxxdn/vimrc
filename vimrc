@@ -37,8 +37,7 @@ if has("gui_running")
   " GUI is running or is about to start.
   " Maximize gvim window (for an alternative on Windows, see simalt below).
   set lines=999 columns=999
-"  set background=light
-"  colorscheme solarized
+  colorscheme Tomorrow-Night-Eighties
 endif
 
 syntax enable
@@ -123,6 +122,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'rbgrouleff/bclose.vim'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
+Plugin 'gabrielelana/vim-markdown'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
