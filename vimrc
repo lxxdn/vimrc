@@ -123,6 +123,7 @@ Plugin 'rbgrouleff/bclose.vim'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
 Plugin 'gabrielelana/vim-markdown'
+Plugin 'majutsushi/tagbar'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -250,3 +251,23 @@ map <Leader>l <Plug>(easymotion-lineforward)
 nmap <Leader>j <Plug>(easymotion-j)
 nmap <Leader>k <Plug>(easymotion-k)
 nmap <Leader>w <Plug>(easymotion-w)
+
+
+
+"""""""""""""""""""
+" Tagbar
+"""""""""""""""""""
+nmap <F8> :TagbarToggle<CR>
+
+
+"""""""""""""""""""
+" Syntastic
+"""""""""""""""""""
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
