@@ -4,7 +4,7 @@ cd ~
 rm -rf .vim .vimrc
 mkdir -p .vim/colors
 git clone  https://github.com/lxxdn/vimrc.git
-mv vimrc/molokai.vim .vim/colors/molokai.vim
+mv vimrc/Tomorrow-Night-Eighties.vim .vim/colors/Tomorrow-Night-Eighties.vim
 
 mv vimrc/vimrc ~/.vimrc
 rm -rf vimrc

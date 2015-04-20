@@ -37,12 +37,11 @@ if has("gui_running")
   " GUI is running or is about to start.
   " Maximize gvim window (for an alternative on Windows, see simalt below).
   set lines=999 columns=999
-  colorscheme molokai
+  colorscheme Tomorrow-Night-Eighties
 endif
 
 syntax enable
-colorscheme molokai
-let g:molokai_original = 1
+colorscheme Tomorrow-Night-Eighties
 """""""""""""""""""
 " 自定义键盘绑定
 """"""""""""""""""""
