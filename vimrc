@@ -69,6 +69,7 @@ map r<Down> <C-W>+
 map r<Left> <C-W>>
 map r<Right> <C-W>>
 map wv <C-W>v
+map ws <C-W>s
 
 """"""""""""""""""
 "缩进
