@@ -31,7 +31,11 @@ set tags=.tags,.gemtags
 "颜色主题
 """"""""""""""""""""
 set t_Co=256
-set guifont=Meslo\ LG\ S\ for\ Powerline:h15
+if has("gui_gtk2")
+  set guifont=Meslo\ LG\ S\ for\ Powerline\ 15
+else
+  set guifont=Meslo\ LG\ S\ for\ Powerline:h15
+endif
 
 if has("gui_running")
   " GUI is running or is about to start.
@@ -122,7 +126,6 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'rbgrouleff/bclose.vim'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
-Plugin 'gabrielelana/vim-markdown'
 Plugin 'majutsushi/tagbar'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -214,14 +217,6 @@ let g:multi_cursor_quit_key='<Esc>'
 " css-color
 """""""""""""""""""
 let g:cssColorVimDoNotMessMyUpdatetime = 1
-
-"""""""""""""""""""
-" Vim flavored mardkown
-"""""""""""""""""""
-augroup markdown
-    au!
-    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
-augroup END
 
 """""""""""""""""""
 " Airline
