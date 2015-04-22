@@ -64,8 +64,13 @@ map <C-J> <C-W>j
 map <C-K> <C-W>k
 map <C-H> <C-W>h
 map <C-L> <C-W>l
+map r<Up> <C-W>+
+map r<Down> <C-W>+
+map r<Left> <C-W>>
+map r<Right> <C-W>>
+map wv <C-W>v
 
-"""""""""""""""""""
+""""""""""""""""""
 "缩进
 """"""""""""""""""""
 set et                      " tab 变 空格
