@@ -68,8 +68,11 @@ map r<Up> <C-W>+
 map r<Down> <C-W>+
 map r<Left> <C-W>>
 map r<Right> <C-W>>
-map wv <C-W>v
-map ws <C-W>s
+map <Leader>v <C-W>v
+map <Leader>s <C-W>s
+nnoremap <F12>f :exe ':silent !firefox %'<CR>
+nnoremap <F12>c :exe ':silent !chromium-browser %'<CR>
+nnoremap <F12>o :exe ':silent !opera %'<CR>
 
 """"""""""""""""""
 "缩进
@@ -133,6 +136,10 @@ Plugin 'rbgrouleff/bclose.vim'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'christoomey/vim-run-interactive'
+Plugin 'tpope/vim-endwise'
+Plugin 'mattn/emmet-vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -152,6 +159,12 @@ filetype plugin on
 "
 
 """""""""""""""""""
+" vim run interactive
+"""""""""""""""""""
+
+nnoremap <Leader>r :RunInInteractiveShell<space>
+
+"""""""""""""""""""
 " NerdTree
 """""""""""""""""""
 "autocmd vimenter * NERDTree
@@ -160,7 +173,7 @@ map <leader>n :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-map <leader>r :NERDTreeFind<CR>
+map <leader>t :NERDTreeFind<CR>
 
 
 """""""""""""""""""
@@ -256,6 +269,8 @@ nmap <Leader>w <Plug>(easymotion-w)
 " Tagbar
 """""""""""""""""""
 nmap <F8> :TagbarToggle<CR>
+let g:tagbar_width=35
+let g:tagbar_autofocus=1
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
     \ 'kinds'     : [
@@ -295,3 +310,15 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+
+"""""""""""""""""""
+" Js-Beautify
+"""""""""""""""""""
+map <c-f> :call JsBeautify()<cr>
+" or
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
