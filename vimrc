@@ -58,6 +58,8 @@ runtime! macros/matchit.vim
 
 nnoremap <F4> :nohl<CR>
 nnoremap <F5> :BufOnly<CR>
+nnoremap <F6> :SyntasticToggleMode<CR>
+
 
 "use Ctrl + hjkl to move between windows
 map <C-J> <C-W>j
@@ -161,8 +163,9 @@ filetype plugin on
 """""""""""""""""""
 " vim run interactive
 """""""""""""""""""
-
 nnoremap <Leader>r :RunInInteractiveShell<space>
+autocmd FileType ruby nnoremap <Leader>b :RunInInteractiveShell<space> ruby % <CR>
+autocmd FileType html nnoremap <Leader>b :RunInInteractiveShell<space> open % <CR>
 
 """""""""""""""""""
 " NerdTree
@@ -298,6 +301,8 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+
+
 
 """""""""""""""""""
 " Syntastic
