@@ -5,7 +5,7 @@ cd ~
 mv .vim .vim_orig
 mv .vimrc .vimrc_org
 mkdir -p .vim/colors
-ln -s .vim/bundle/vim-kolor/colors/kolor.vim .vim/colors/kolor.vim
+ln -s ~/.vim/bundle/vim-kolor/colors/kolor.vim ~/.vim/colors/kolor.vim
 git clone  https://github.com/lxxdn/vimrc.git
 
 mv vimrc/vimrc ~/.vimrc
