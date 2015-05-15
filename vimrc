@@ -37,15 +37,26 @@ else
   set guifont=Meslo\ LG\ S\ for\ Powerline:h15
 endif
 
+
+"""""""""""""""""""
+" kolor configuration
+""""""""""""""""""""
+let g:kolor_italic=1                    " Enable italic. Default: 1
+let g:kolor_bold=1                      " Enable bold. Default: 1
+
+let g:kolor_underlined=0                " Enable underline. Default: 0
+let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
+
 if has("gui_running")
   " GUI is running or is about to start.
   " Maximize gvim window (for an alternative on Windows, see simalt below).
   set lines=999 columns=999
-  colorscheme Tomorrow-Night-Eighties
+  colorscheme kolor
 endif
 
 syntax enable
-colorscheme Tomorrow-Night-Eighties
+"colorscheme Tomorrow-Night-Eighties
+colorscheme kolor
 """""""""""""""""""
 " 自定义键盘绑定
 """"""""""""""""""""
@@ -72,9 +83,6 @@ map r<Left> <C-W>>
 map r<Right> <C-W>>
 map <Leader>v <C-W>v
 map <Leader>s <C-W>s
-nnoremap <F12>f :exe ':silent !firefox %'<CR>
-nnoremap <F12>c :exe ':silent !chromium-browser %'<CR>
-nnoremap <F12>o :exe ':silent !opera %'<CR>
 
 """"""""""""""""""
 "缩进
@@ -142,6 +150,7 @@ Plugin 'maksimr/vim-jsbeautify'
 Plugin 'christoomey/vim-run-interactive'
 Plugin 'tpope/vim-endwise'
 Plugin 'mattn/emmet-vim'
+Plugin 'zeis/vim-kolor'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
