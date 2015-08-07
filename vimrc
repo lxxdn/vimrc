@@ -71,6 +71,9 @@ nnoremap <F4> :nohl<CR>
 nnoremap <F5> :BufOnly<CR>
 nnoremap <F6> :SyntasticToggleMode<CR>
 
+" shift tab pages
+map <S-Left> :tabp<CR>
+map <S-Right> :tabn<CR>
 
 "use Ctrl + hjkl to move between windows
 map <C-J> <C-W>j
@@ -78,8 +81,8 @@ map <C-K> <C-W>k
 map <C-H> <C-W>h
 map <C-L> <C-W>l
 map r<Up> <C-W>+
-map r<Down> <C-W>+
-map r<Left> <C-W>>
+map r<Down> <C-W>-
+map r<Left> <C-W><
 map r<Right> <C-W>>
 map <Leader>v <C-W>v
 map <Leader>s <C-W>s
@@ -151,6 +154,7 @@ Plugin 'christoomey/vim-run-interactive'
 Plugin 'tpope/vim-endwise'
 Plugin 'mattn/emmet-vim'
 Plugin 'zeis/vim-kolor'
+Plugin 'digitaltoad/vim-jade'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -186,6 +190,7 @@ autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 map <leader>t :NERDTreeFind<CR>
+"let NERDTreeShowHidden=1
 
 
 """""""""""""""""""
@@ -208,8 +213,7 @@ let g:rbpt_colorpairs = [
     \ ['darkcyan',    'SeaGreen3'],
     \ ['darkred',     'DarkOrchid3'],
     \ ['red',         'firebrick3'],
-    \
-    \]
+    \ ]
 
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
@@ -232,6 +236,8 @@ let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_max=500
 let g:ctrlp_follow_symlinks=1
 let g:ctrlp_clear_cache_on_exit = 1
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 nnoremap <F2> :CtrlPClearAllCaches<CR>
 
@@ -325,7 +331,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-
 """""""""""""""""""
 " Js-Beautify
 """""""""""""""""""
@@ -336,10 +341,3 @@ autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
-
-
-
-"""""""""""""""""""
-" Eclim
-"""""""""""""""""""
-let g:EclimCompletionMethod = 'omnifunc'
