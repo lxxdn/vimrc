@@ -27,6 +27,19 @@ set cin             "开启重新排版按V选中，然后按=，就会重排
 set wildmode=longest,list,full
 set clipboard=unnamed "use system clipboard
 set tags=.tags,.gemtags
+
+:set directory=$HOME/.vim/swapfiles// "set swap file location
+set et                      " tab 变 空格
+set smarttab                "backspace delete a tab instead of a space
+set pastetoggle=<F3>
+nnoremap <F3> :set invpaste paste?<CR>kk
+
+set shiftwidth=2
+set tabstop=2
+set sw=2
+
+"删除没用的空格
+autocmd BufWritePre * :%s/\s\+$//e
 """""""""""""""""""
 "颜色主题
 """"""""""""""""""""
@@ -87,28 +100,10 @@ map r<Right> <C-W>>
 map <Leader>v <C-W>v
 map <Leader>s <C-W>s
 
-""""""""""""""""""
-"缩进
-""""""""""""""""""""
-set et                      " tab 变 空格
-set smarttab                "backspace delete a tab instead of a space
+
 """""""""""""""""""
-"复制模式
+" 设置Vundle
 """"""""""""""""""""
-set pastetoggle=<F3>
-nnoremap <F3> :set invpaste paste?<CR>kk
-
-"如果是ruby则tab是两个空格，否则是4个空格
-set shiftwidth=2
-set tabstop=2
-set sw=2
-
-"删除没用的空格
-autocmd BufWritePre * :%s/\s\+$//e
-
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -155,6 +150,7 @@ Plugin 'tpope/vim-endwise'
 Plugin 'mattn/emmet-vim'
 Plugin 'zeis/vim-kolor'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'nathanaelkane/vim-indent-guides'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -227,9 +223,8 @@ au Syntax   * RainbowParenthesesLoadBraces
 """""""""""""""""""
 
 "MRU default
-let g:ctrlp_regexp = 1
+let g:ctrlp_regexp = 0
 "let g:ctrlp_cmd = 'CtrlPMRU'
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.rvm$'
 let g:ctrlp_match_window_bottom=1
 let g:ctrlp_max_height=15
 let g:ctrlp_match_window_reversed=0
@@ -238,6 +233,7 @@ let g:ctrlp_follow_symlinks=1
 let g:ctrlp_clear_cache_on_exit = 1
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_show_hidden = 1
 
 nnoremap <F2> :CtrlPClearAllCaches<CR>
 
@@ -316,7 +312,6 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
-
 
 
 """""""""""""""""""
