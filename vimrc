@@ -158,6 +158,7 @@ Plugin 'tpope/vim-endwise'
 Plugin 'mattn/emmet-vim'
 Plugin 'zeis/vim-kolor'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'tmux-plugins/vim-tmux'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
