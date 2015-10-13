@@ -25,7 +25,11 @@ filetype plugin indent on
 set sm             "括号匹配
 set cin             "开启重新排版按V选中，然后按=，就会重排
 set wildmode=longest,list,full
-set clipboard=unnamed "use system clipboard
+if has('unnamedplus')
+  set clipboard=unnamed,unnamedplus
+else
+  set clipboard=unnamed "use system clipboard
+endif
 
 set tags=.tags,.gemtags
 """""""""""""""""""
@@ -159,6 +163,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'zeis/vim-kolor'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'tmux-plugins/vim-tmux'
+Plugin 'tpope/vim-surround'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -231,7 +236,7 @@ au Syntax   * RainbowParenthesesLoadBraces
 """""""""""""""""""
 
 "MRU default
-let g:ctrlp_cmd = 'CtrlPMRU'
+let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.rvm$'
 let g:ctrlp_match_window_bottom=1
 let g:ctrlp_max_height=15
