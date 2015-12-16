@@ -1,7 +1,9 @@
 """""""""""""""""""
 "vim基本设定
 """""""""""""""""""
+set relativenumber
 set nu  "行号
+
 set backspace=indent,eol,start "让backspace正常运作
 set nocompatible               " 关闭 vi 兼容模式
 filetype off           " Enable filetype detection
@@ -35,6 +37,8 @@ set tags=.tags,.gemtags
 """""""""""""""""""
 "颜色主题
 """"""""""""""""""""
+set background=dark
+
 set t_Co=256
 if has("gui_gtk2")
   set guifont=Meslo\ LG\ S\ for\ Powerline\ 15
@@ -42,33 +46,25 @@ else
   set guifont=Meslo\ LG\ S\ for\ Powerline:h15
 endif
 
-
-"""""""""""""""""""
-" kolor configuration
-""""""""""""""""""""
-let g:kolor_italic=1                    " Enable italic. Default: 1
-let g:kolor_bold=1                      " Enable bold. Default: 1
-
-let g:kolor_underlined=0                " Enable underline. Default: 0
-let g:kolor_alternative_matchparen=0    " Gray 'MatchParen' color. Default: 0
-
 if has("gui_running")
   " GUI is running or is about to start.
   " Maximize gvim window (for an alternative on Windows, see simalt below).
   set lines=999 columns=999
-  colorscheme kolor
 endif
 
 syntax enable
-"colorscheme Tomorrow-Night-Eighties
-colorscheme kolor
+
+let g:gruvbox_contrast_dark="hard"
+colorscheme gruvbox
+
 """""""""""""""""""
 " 自定义键盘绑定
 """"""""""""""""""""
 " 定义下一个buffer和前一个buffer
-map <C-Tab> :bnext<cr>
-map <C-S-Tab> :bprevious<cr>
-nmap <Leader>q :Bclose<cr>
+map b<Right> :bnext<cr>
+map b<Left> :bprevious<cr>
+map <Leader>q :Bclose<cr>
+map <Leader>x <C-W>x
 " % to bounce from do to end etc.
 runtime! macros/matchit.vim
 
@@ -76,21 +72,22 @@ nnoremap <F4> :nohl<CR>
 nnoremap <F5> :BufOnly<CR>
 nnoremap <F6> :SyntasticToggleMode<CR>
 
-" shift tab pages
-map <S-Left> :tabp<CR>
-map <S-Right> :tabn<CR>
 
 "use Ctrl + hjkl to move between windows
-map <C-J> <C-W>j
-map <C-K> <C-W>k
-map <C-H> <C-W>h
-map <C-L> <C-W>l
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
 map r<Up> <C-W>+
 map r<Down> <C-W>-
 map r<Left> <C-W><
 map r<Right> <C-W>>
 map <Leader>v <C-W>v
 map <Leader>s <C-W>s
+
+
+nnoremap <F12> :!open % -a Google\ Chrome<CR>
 
 """"""""""""""""""
 "缩进
@@ -158,17 +155,19 @@ Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'christoomey/vim-run-interactive'
-Plugin 'tpope/vim-endwise'
 Plugin 'mattn/emmet-vim'
 Plugin 'zeis/vim-kolor'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'tmux-plugins/vim-tmux'
 Plugin 'tpope/vim-surround'
+Plugin 'morhetz/gruvbox'
+Plugin 'KabbAmine/gulp-vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 filetype plugin on
+set omnifunc=syntaxcomplete#Complet
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -244,7 +243,7 @@ let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_max=500
 let g:ctrlp_follow_symlinks=1
 let g:ctrlp_clear_cache_on_exit = 1
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 nnoremap <F2> :CtrlPClearAllCaches<CR>
@@ -257,7 +256,6 @@ let g:multi_cursor_next_key='<C-n>'
 let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
-
 """""""""""""""""""
 " css-color
 """""""""""""""""""
@@ -273,6 +271,7 @@ let g:airline_powerline_fonts = 1
 " YouCompleteMe
 """""""""""""""""""
 let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_global_ycm_extra_conf = '/Users/julien/.ycm_extra_conf.py'
 
 """""""""""""""""""
 " ultisnips
@@ -342,7 +341,7 @@ let g:syntastic_check_on_wq = 0
 """""""""""""""""""
 " Js-Beautify
 """""""""""""""""""
-map <c-f> :call JsBeautify()<cr>
+map <Leader>f :call JsBeautify()<cr>
 " or
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 " for html
