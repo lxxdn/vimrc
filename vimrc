@@ -50,12 +50,14 @@ if has("gui_running")
   " GUI is running or is about to start.
   " Maximize gvim window (for an alternative on Windows, see simalt below).
   set lines=999 columns=999
+else
+  let base16colorspace=256
 endif
 
-syntax enable
-
-let g:gruvbox_contrast_dark="hard"
 colorscheme gruvbox
+"syntax enable
+
+"let g:gruvbox_contrast_dark="hard"
 
 """""""""""""""""""
 " 自定义键盘绑定
@@ -134,8 +136,6 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-haml'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'rking/ag.vim'
 Plugin 'skammer/vim-css-color'
@@ -143,8 +143,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-fugitive'
 Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'fatih/vim-go'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-scripts/BufOnly.vim'
 Plugin 'honza/vim-snippets'
@@ -155,13 +154,14 @@ Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'christoomey/vim-run-interactive'
-Plugin 'mattn/emmet-vim'
 Plugin 'zeis/vim-kolor'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'tmux-plugins/vim-tmux'
 Plugin 'tpope/vim-surround'
 Plugin 'morhetz/gruvbox'
 Plugin 'KabbAmine/gulp-vim'
+Plugin 'chriskempson/base16-vim'
+Plugin 'plasticboy/vim-markdown'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -199,7 +199,6 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 map <leader>t :NERDTreeFind<CR>
 "let NERDTreeShowHidden=1
-
 
 """""""""""""""""""
 " Rainbow Parentheses
@@ -338,6 +337,11 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "⚠"
+
+let g:syntastic_quiet_messages = { "level": "warnings" }
+
 """""""""""""""""""
 " Js-Beautify
 """""""""""""""""""
@@ -348,3 +352,9 @@ autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+
+"""""""""""""""""""
+" Markdown
+"""""""""""""""""""
+let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_no_default_key_mappings=1
