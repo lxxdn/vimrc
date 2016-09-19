@@ -53,8 +53,8 @@ if has("gui_running")
 else
   let base16colorspace=256
 endif
-
-colorscheme gruvbox
+colorscheme darcula
+"colorscheme gruvbox
 "syntax enable
 
 "let g:gruvbox_contrast_dark="hard"
@@ -155,13 +155,11 @@ Plugin 'majutsushi/tagbar'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'christoomey/vim-run-interactive'
 Plugin 'zeis/vim-kolor'
-Plugin 'digitaltoad/vim-jade'
 Plugin 'tmux-plugins/vim-tmux'
 Plugin 'tpope/vim-surround'
-Plugin 'morhetz/gruvbox'
-Plugin 'KabbAmine/gulp-vim'
-Plugin 'chriskempson/base16-vim'
-Plugin 'plasticboy/vim-markdown'
+Plugin 'blueshirts/darcula'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -240,6 +238,7 @@ let g:ctrlp_match_window_bottom=1
 let g:ctrlp_max_height=15
 let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_max=500
+let g:ctrlp_show_hidden = 1
 let g:ctrlp_follow_symlinks=1
 let g:ctrlp_clear_cache_on_exit = 1
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*
