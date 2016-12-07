@@ -6,15 +6,13 @@ set nu  "行号
 
 set backspace=indent,eol,start "让backspace正常运作
 set nocompatible               " 关闭 vi 兼容模式
-filetype off           " Enable filetype detection
 
 syntax on " 自动语法高亮
 set showcmd "状态栏显示目前执行的命令
 set encoding=utf-8
-set nocompatible               " be iMproved
 set cul     "显示当前行
+set re=1
 
-"set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%]  " 我的状态行显示的内容（包括文件类型和解码） set laststatus=2  " 总是显示状态行
 set cmdheight=2   " 命令行（在状态行下）的高度，默认为1，这里是2
 set ignorecase          "搜索忽略大小写
 set lbr                 "单词不断行
@@ -23,7 +21,6 @@ set hls                 "高亮搜索
 set is                  "输入时搜索
 set whichwrap=b,s,<,>,[,]
 set ambiwidth=double
-filetype plugin indent on
 set sm             "括号匹配
 set cin             "开启重新排版按V选中，然后按=，就会重排
 set wildmode=longest,list,full
@@ -34,30 +31,10 @@ else
 endif
 
 set tags=.tags,.gemtags
-"""""""""""""""""""
-"颜色主题
-""""""""""""""""""""
-set background=dark
 
-set t_Co=256
-if has("gui_gtk2")
-  set guifont=Meslo\ LG\ S\ for\ Powerline\ 15
-else
-  set guifont=Meslo\ LG\ S\ for\ Powerline:h15
-endif
+" set es6 as javascript type
+au BufRead,BufNewFile *.es6 setfiletype javascript
 
-if has("gui_running")
-  " GUI is running or is about to start.
-  " Maximize gvim window (for an alternative on Windows, see simalt below).
-  set lines=999 columns=999
-else
-  let base16colorspace=256
-endif
-colorscheme darcula
-"colorscheme gruvbox
-"syntax enable
-
-"let g:gruvbox_contrast_dark="hard"
 
 """""""""""""""""""
 " 自定义键盘绑定
@@ -66,7 +43,6 @@ colorscheme darcula
 map b<Right> :bnext<cr>
 map b<Left> :bprevious<cr>
 map <Leader>q :Bclose<cr>
-map <Leader>x <C-W>x
 " % to bounce from do to end etc.
 runtime! macros/matchit.vim
 
@@ -85,12 +61,17 @@ map r<Up> <C-W>+
 map r<Down> <C-W>-
 map r<Left> <C-W><
 map r<Right> <C-W>>
+
+map <Leader>x <C-W>x
 map <Leader>v <C-W>v
 map <Leader>s <C-W>s
 
+" json format
+map <Leader>j !python -m json.tool<CR>
+"nnoremap <F12> :!open % -a Google\ Chrome<CR>
 
-nnoremap <F12> :!open % -a Google\ Chrome<CR>
-
+nnoremap <F12>f :exe ':silent !firefox %'<CR>
+nnoremap <F12>c :exe ':silent !google-chrome %'<CR>
 """"""""""""""""""
 "缩进
 """"""""""""""""""""
@@ -102,7 +83,6 @@ set smarttab                "backspace delete a tab instead of a space
 set pastetoggle=<F3>
 nnoremap <F3> :set invpaste paste?<CR>kk
 
-"如果是ruby则tab是两个空格，否则是4个空格
 set shiftwidth=2
 set tabstop=2
 set sw=2
@@ -110,9 +90,12 @@ set sw=2
 "删除没用的空格
 autocmd BufWritePre * :%s/\s\+$//e
 
-set nocompatible              " be iMproved, required
 filetype off                  " required
 
+"""""""""""""""""""
+" Vundle
+"""""""""""""""""""
+nnoremap <Leader>r :RunInInteractiveShell<space>
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -122,8 +105,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-"my Bundle here:
-"
+"""""""""""""""""""
+" My Plugins
+"""""""""""""""""""
 " original repos on github
 Plugin 'kien/ctrlp.vim'
 Plugin 'jiangmiao/auto-pairs'
@@ -136,14 +120,14 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-haml'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'rking/ag.vim'
-Plugin 'skammer/vim-css-color'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-fugitive'
 Plugin 'cakebaker/scss-syntax.vim'
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-scripts/BufOnly.vim'
 Plugin 'honza/vim-snippets'
@@ -157,9 +141,10 @@ Plugin 'christoomey/vim-run-interactive'
 Plugin 'zeis/vim-kolor'
 Plugin 'tmux-plugins/vim-tmux'
 Plugin 'tpope/vim-surround'
-Plugin 'blueshirts/darcula'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'isRuslan/vim-es6'
+Plugin 'flazz/vim-colorschemes'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -254,10 +239,6 @@ let g:multi_cursor_next_key='<C-n>'
 let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
-"""""""""""""""""""
-" css-color
-"""""""""""""""""""
-let g:cssColorVimDoNotMessMyUpdatetime = 1
 
 """""""""""""""""""
 " Airline
@@ -294,33 +275,6 @@ nmap <Leader>w <Plug>(easymotion-w)
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_width=35
 let g:tagbar_autofocus=1
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
 
 
 
@@ -352,8 +306,28 @@ autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
+
 """""""""""""""""""
-" Markdown
-"""""""""""""""""""
-let g:vim_markdown_folding_disabled=1
-let g:vim_markdown_no_default_key_mappings=1
+"颜色主题
+""""""""""""""""""""
+set background=dark
+
+set t_Co=256
+if has("gui_gtk3")
+  set guifont=Meslo\ LG\ S\ for\ Powerline\ 15
+  set guioptions-=T  "remove toolbar
+else
+  set guifont=Meslo\ LG\ S\ for\ Powerline:h15
+endif
+
+if has("gui_running")
+  " GUI is running or is about to start.
+  " Maximize gvim window (for an alternative on Windows, see simalt below).
+  set lines=999 columns=999
+else
+  let base16colorspace=256
+endif
+
+set background=dark
+colorscheme solarized
+

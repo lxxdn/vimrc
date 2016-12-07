@@ -1,12 +1,8 @@
 #! /bin/sh
 
 cd ~
-#rm -rf .vim .vimrc
 mv .vim .vim_orig
 mv .vimrc .vimrc_org
-mkdir -p .vim/colors
-#ln -s ~/.vim/bundle/vim-kolor/colors/kolor.vim ~/.vim/colors/kolor.vim
-ln -s ~/.vim/bundle/darcula/colors/darcula.vim ~/.vim/colors/darcula.vim
 git clone  https://github.com/lxxdn/vimrc.git
 
 mv vimrc/vimrc ~/.vimrc
@@ -18,4 +14,4 @@ git clone https://github.com/powerline/fonts.git tmpfonts
 ./tmpfonts/install.sh
 rm -rf tmpfonts
 
-vim -c VundleInstall
+# vim -c VundleInstall
