@@ -48,7 +48,6 @@ runtime! macros/matchit.vim
 
 nnoremap <F4> :nohl<CR>
 nnoremap <F5> :BufOnly<CR>
-nnoremap <F6> :SyntasticToggleMode<CR>
 
 
 "use Ctrl + hjkl to move between windows
@@ -111,24 +110,15 @@ Plugin 'gmarik/Vundle.vim'
 " original repos on github
 Plugin 'kien/ctrlp.vim'
 Plugin 'jiangmiao/auto-pairs'
-if v:version == 704
-  Plugin 'SirVer/ultisnips'
-endif
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-haml'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'rking/ag.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-fugitive'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/BufOnly.vim'
 Plugin 'honza/vim-snippets'
 Plugin 'Lokaltog/vim-easymotion'
@@ -136,15 +126,20 @@ Plugin 'rbgrouleff/bclose.vim'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
-Plugin 'maksimr/vim-jsbeautify'
 Plugin 'christoomey/vim-run-interactive'
 Plugin 'zeis/vim-kolor'
 Plugin 'tmux-plugins/vim-tmux'
 Plugin 'tpope/vim-surround'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'isRuslan/vim-es6'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'solarnz/thrift.vim'
+Plugin 'w0rp/ale'
+Plugin 'google/yapf'
+Plugin 'python-mode/python-mode'
+Plugin 'nathanaelkane/vim-indent-guides'
+
+
+hi pythonSelf  ctermfg=68  guifg=#5f87d7 cterm=bold gui=bold
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -163,6 +158,9 @@ set omnifunc=syntaxcomplete#Complet
 "
 "
 "
+
+autocmd FileType python nnoremap <Leader>= :0,$!yapf<CR>
+
 
 """""""""""""""""""
 " vim run interactive
@@ -211,6 +209,21 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax   * RainbowParenthesesLoadRound
 au Syntax   * RainbowParenthesesLoadSquare
 au Syntax   * RainbowParenthesesLoadBraces
+
+
+"""""""""""""""""""
+" jedi
+"""""""""""""""""""
+
+let g:jedi#use_splits_not_buffers = "right"
+let g:jedi#popup_select_first = 0
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>u"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
 
 """""""""""""""""""
 " ctrlp
@@ -276,25 +289,6 @@ nmap <F8> :TagbarToggle<CR>
 let g:tagbar_width=35
 let g:tagbar_autofocus=1
 
-
-
-"""""""""""""""""""
-" Syntastic
-"""""""""""""""""""
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_error_symbol = "✗"
-let g:syntastic_warning_symbol = "⚠"
-
-let g:syntastic_quiet_messages = { "level": "warnings" }
-
 """""""""""""""""""
 " Js-Beautify
 """""""""""""""""""
@@ -328,7 +322,7 @@ if has("gui_running")
   colorscheme solarized
 else
   let base16colorspace=256
-  colorscheme monokai
+  colorscheme molokai
 endif
 
 
