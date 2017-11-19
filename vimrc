@@ -82,9 +82,9 @@ set smarttab                "backspace delete a tab instead of a space
 set pastetoggle=<F3>
 nnoremap <F3> :set invpaste paste?<CR>kk
 
-set shiftwidth=2
-set tabstop=2
-set sw=2
+set shiftwidth=4
+set tabstop=4
+set sw=4
 
 "删除没用的空格
 autocmd BufWritePre * :%s/\s\+$//e
