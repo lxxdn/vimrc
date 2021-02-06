@@ -31,9 +31,7 @@ else
 endif
 
 set tags=.tags,.gemtags
-
-" set es6 as javascript type
-au BufRead,BufNewFile *.es6 setfiletype javascript
+"set termguicolors
 
 
 """""""""""""""""""
@@ -94,7 +92,6 @@ filetype off                  " required
 """""""""""""""""""
 " Vundle
 """""""""""""""""""
-nnoremap <Leader>r :RunInInteractiveShell<space>
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -124,23 +121,26 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'rbgrouleff/bclose.vim'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
-Plugin 'majutsushi/tagbar'
 Plugin 'zeis/vim-kolor'
 Plugin 'tmux-plugins/vim-tmux'
 Plugin 'tpope/vim-surround'
-Plugin 'flazz/vim-colorschemes'
 Plugin 'solarnz/thrift.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'fatih/vim-go'
+Plugin 'kaicataldo/material.vim'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'preservim/tagbar'
 
 
-hi pythonSelf  ctermfg=68  guifg=#5f87d7 cterm=bold gui=bold
+
+"hi pythonSelf  ctermfg=68  guifg=#5f87d7 cterm=bold gui=bold
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 filetype plugin on
-set omnifunc=syntaxcomplete#Complet
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -207,20 +207,6 @@ au Syntax   * RainbowParenthesesLoadBraces
 
 
 """""""""""""""""""
-" jedi
-"""""""""""""""""""
-
-let g:jedi#use_splits_not_buffers = "right"
-let g:jedi#popup_select_first = 0
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>u"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
-
-"""""""""""""""""""
 " ctrlp
 """""""""""""""""""
 
@@ -254,22 +240,67 @@ let g:multi_cursor_quit_key='<Esc>'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
-"""""""""""""""""""
-" YouCompleteMe
-"""""""""""""""""""
-let g:ycm_key_list_select_completion = ['<Down>']
-let g:ycm_global_ycm_extra_conf = '/Users/julien/.ycm_extra_conf.py'
 
 """""""""""""""""""
 " ultisnips
 """""""""""""""""""
-
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
+
 """""""""""""""""""
+" Vim-Go
+"""""""""""""""""""
+let g:go_fmt_command = "goimports"
+let g:go_imports_autosave = 1
+let g:go_code_completion_enabled = 1
+let g:go_code_completion_icase = 0
+let g:go_info_mode = 'gopls'
+let g:go_def_mode = 'gopls'
+
+let g:syntastic_go_checkers = ['golint', 'govet']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_list_type = "quickfix"
+let g:go_diagnostics_level = 2
+
+"""""""""""""""""""
+" OmniComplete 自动补全
+"""""""""""""""""""
+set completeopt+=menuone,noselect,noinsert
+function! OpenCompletion()
+    if !pumvisible() && ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z'))
+        call feedkeys("\<C-x>\<C-o>")
+    endif
+endfunction
+
+autocmd InsertCharPre *.go call OpenCompletion()
+"
+""""""""""""""""""""
+" syntastic
+"""""""""""""""""""
+"设置error和warning的标志
+let g:syntastic_enable_signs = 1
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='►'
+"总是打开Location List（相当于QuickFix）窗口，如果你发现syntastic因为与其他插件冲突而经常崩溃，将下面选项置0
+let g:syntastic_always_populate_loc_list = 1
+"自动打开Locaton List，默认值为2，表示发现错误时不自动打开，当修正以后没有再发现错误时自动关闭，置1表示自动打开自动关闭，0表示关闭自动打开和自动关闭，3表示自动打开，但不自动关闭
+let g:syntastic_auto_loc_list = 1
+"修改Locaton List窗口高度
+let g:syntastic_loc_list_height = 5
+"打开文件时自动进行检查
+let g:syntastic_check_on_open = 1
+"自动跳转到发现的第一个错误或警告处
+let g:syntastic_auto_jump = 1
+"进行实时检查，如果觉得卡顿，将下面的选项置为1
+let g:syntastic_check_on_wq = 0
+"高亮错误
+let g:syntastic_enable_highlighting=1
+
+
+""""""""""""""""""""
 " Easy motion
 """""""""""""""""""
 map <Leader>l <Plug>(easymotion-lineforward)
@@ -284,22 +315,39 @@ nmap <F8> :TagbarToggle<CR>
 let g:tagbar_width=35
 let g:tagbar_autofocus=1
 
-"""""""""""""""""""
-" Js-Beautify
-"""""""""""""""""""
-map <Leader>f :call JsBeautify()<cr>
-" or
-autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-" for html
-autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-" for css or scss
-autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
-
+let g:tagbar_type_go = {
+	\ 'ctagstype' : 'go',
+	\ 'kinds'     : [
+		\ 'p:package',
+		\ 'i:imports:1',
+		\ 'c:constants',
+		\ 'v:variables',
+		\ 't:types',
+		\ 'n:interfaces',
+		\ 'w:fields',
+		\ 'e:embedded',
+		\ 'm:methods',
+		\ 'r:constructor',
+		\ 'f:functions'
+	\ ],
+	\ 'sro' : '.',
+	\ 'kind2scope' : {
+		\ 't' : 'ctype',
+		\ 'n' : 'ntype'
+	\ },
+	\ 'scope2kind' : {
+		\ 'ctype' : 't',
+		\ 'ntype' : 'n'
+	\ },
+	\ 'ctagsbin'  : 'gotags',
+	\ 'ctagsargs' : '-sort -silent'
+\ }
 
 """""""""""""""""""
 "颜色主题
 """"""""""""""""""""
 set background=dark
+
 
 set t_Co=256
 if has("gui_gtk3")
@@ -313,11 +361,19 @@ if has("gui_running")
   " GUI is running or is about to start.
   " Maximize gvim window (for an alternative on Windows, see simalt below).
   set lines=999 columns=999
-  set background=light
-  colorscheme solarized
+  let g:material_terminal_italics = 1
+  let g:material_theme_style = 'darker'
+  colorscheme material
+  set termguicolors
+  "set background=light
+  "set termguicolors
+ " let ayucolor="light"
+ " colorscheme ayu
 else
   let base16colorspace=256
   colorscheme molokai
 endif
 
 
+
+f
